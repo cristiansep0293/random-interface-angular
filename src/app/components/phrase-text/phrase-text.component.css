@@ -1,0 +1,10 @@
+.containerPhrase {
+  min-width: 280px;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 70px 40px;
+  border-radius: 39px;
+  color: #25063f;
+  border-radius: 50px;
+  border: none;
+}
