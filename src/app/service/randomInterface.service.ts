@@ -3,13 +3,11 @@ import { iPhrase } from '../interface/iPhrase.interface';
 import { HttpClient } from '@angular/common/http';
 import { getRandomNumber } from '../util/util';
 import { Observable } from 'rxjs';
-// import { listFiles } from 'list-files-in-dir';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomInterfaceService {
-  // public jsonDataResult: iPhrase[] = [];
   public imgsArray: string[] = [
     '../assets/img/imgOne.jpg',
     '../assets/img/imgTwo.jpg',
@@ -17,12 +15,7 @@ export class RandomInterfaceService {
     '../assets/img/imgFour.jpg'
   ];
 
-  constructor(private http: HttpClient) {
-    // listFiles('../assets/img')
-    // .then(files => {
-    //   console.log(files);
-    // });
-  }
+  constructor(private http: HttpClient) { }
 
   public getJsonDataResult():Observable<iPhrase[]> {
     return this.http.get<iPhrase[]>('assets/json/phrases.json');

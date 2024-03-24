@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-// import { listFiles } from "list-files-in-dir";
-// import { readdir } from 'fs';
 
 import { iPhrase } from './interface/iPhrase.interface';
 import { RandomInterfaceService } from './service/randomInterface.service';
@@ -16,10 +14,6 @@ export class AppComponent {
   public jsonDataResult:iPhrase[] = [];
 
   constructor(private _randomInterfaceService: RandomInterfaceService) {
-    // readdir("./img/", (err: any, filename: string[]) => {
-    //   debugger;
-    //   console.log(filename)
-    // });
     _randomInterfaceService.getJsonDataResult().subscribe(data => {
       this.jsonDataResult = data;
       this.newPhrase = _randomInterfaceService.getRandomPhrase(this.newPhrase, this.jsonDataResult);
