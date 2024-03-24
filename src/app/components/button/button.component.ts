@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { getRandomImg, getRandomNumber } from '../../util/util';
+import { RandomInterfaceService } from '../../service/randomInterface.service';
 
 @Component({
   selector: 'app-button',
@@ -12,8 +12,10 @@ export class ButtonComponent {
   @Output()
   public onNewImg: EventEmitter<string> = new EventEmitter();
 
+  constructor(private randomInterfaceService: RandomInterfaceService) {}
+
   public changeImg():void {
-    this.imgCurrent = getRandomImg(this.imgCurrent);
+    this.imgCurrent = this.randomInterfaceService.getRandomImg(this.imgCurrent);
     this.onNewImg.emit(this.imgCurrent);
   }
 }

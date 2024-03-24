@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { iPhrase } from '../interface/iPhrase.interface';
 import { HttpClient } from '@angular/common/http';
 import { getRandomNumber } from '../util/util';
+import { Observable } from 'rxjs';
+// import { listFiles } from 'list-files-in-dir';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomInterfaceService {
-  public jsonDataResult: iPhrase[] = [];
+  // public jsonDataResult: iPhrase[] = [];
   public imgsArray: string[] = [
     '../assets/img/imgOne.jpg',
     '../assets/img/imgTwo.jpg',
@@ -16,15 +18,20 @@ export class RandomInterfaceService {
   ];
 
   constructor(private http: HttpClient) {
-    this.http.get<iPhrase[]>('assets/json/phrases.json').subscribe((res) => {
-      this.jsonDataResult = res;
-    });
+    // listFiles('../assets/img')
+    // .then(files => {
+    //   console.log(files);
+    // });
   }
 
-  public getRandomPhrase = (phraseOld: string): string => {
-    let newObjPhrase:iPhrase = this.jsonDataResult[getRandomNumber(this.jsonDataResult.length - 1)];
+  public getJsonDataResult():Observable<iPhrase[]> {
+    return this.http.get<iPhrase[]>('assets/json/phrases.json');
+  }
+
+  public getRandomPhrase = (phraseOld: string, jsonDataResult:iPhrase[]): string => {
+    let newObjPhrase:iPhrase = jsonDataResult[getRandomNumber(jsonDataResult.length - 1)];
     while (newObjPhrase.phrase === phraseOld) {
-      newObjPhrase = this.jsonDataResult[getRandomNumber(this.jsonDataResult.length - 1)];
+      newObjPhrase = jsonDataResult[getRandomNumber(jsonDataResult.length - 1)];
     }
     return newObjPhrase.phrase;
   }

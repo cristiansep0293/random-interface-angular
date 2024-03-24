@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { listFiles } from "list-files-in-dir";
+// import { readdir } from 'fs';
 
 import { iPhrase } from './interface/iPhrase.interface';
 import { RandomInterfaceService } from './service/randomInterface.service';
@@ -14,13 +15,20 @@ export class AppComponent {
   public newPhrase:string = '';
   public jsonDataResult:iPhrase[] = [];
 
-  constructor(private randomInterfaceService: RandomInterfaceService) {
-    this.newPhrase = randomInterfaceService.getRandomPhrase(this.newPhrase);
-      this.imgCurrent = randomInterfaceService.getRandomImg(this.imgCurrent);
+  constructor(private _randomInterfaceService: RandomInterfaceService) {
+    // readdir("./img/", (err: any, filename: string[]) => {
+    //   debugger;
+    //   console.log(filename)
+    // });
+    _randomInterfaceService.getJsonDataResult().subscribe(data => {
+      this.jsonDataResult = data;
+      this.newPhrase = _randomInterfaceService.getRandomPhrase(this.newPhrase, this.jsonDataResult);
+      this.imgCurrent = _randomInterfaceService.getRandomImg(this.imgCurrent);
+    });
   }
 
   public onChangeInterface(img: string): void {
     this.imgCurrent = img;
-    this.newPhrase = this.randomInterfaceService.getRandomPhrase(this.newPhrase);
+    this.newPhrase = this._randomInterfaceService.getRandomPhrase(this.newPhrase, this.jsonDataResult);
   }
 }
