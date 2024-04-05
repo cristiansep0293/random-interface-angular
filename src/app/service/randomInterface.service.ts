@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class RandomInterfaceService {
   public imgsArray: string[] = [
-    '../assets/img/imgOne.jpg',
-    '../assets/img/imgTwo.jpg',
-    '../assets/img/imgThree.jpg',
-    '../assets/img/imgFour.jpg'
+    'assets/img/imgOne.jpg',
+    'assets/img/imgTwo.jpg',
+    'assets/img/imgThree.jpg',
+    'assets/img/imgFour.jpg'
   ];
 
   constructor(private http: HttpClient) { }
